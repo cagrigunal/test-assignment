@@ -1,0 +1,47 @@
+version: '3.5'
+
+services:
+  db:
+      image: mysql:8.0
+      container_name: mailer-db
+      restart: unless-stopped
+      environment:
+        MYSQL_DATABASE: mailer
+        MYSQL_ROOT_PASSWORD: mailerpw
+        MYSQL_PASSWORD: mailerpw
+        MYSQL_USER: mailer
+        SERVICE_TAGS: dev
+        SERVICE_NAME: mysql
+      volumes:
+        - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+      networks:
+        - mailer
+  mailerphp:
+    build:
+      context: ./
+      dockerfile: ./docker/php-fpm/Dockerfile
+      args:
+        uid: ${MYUID:-1000}
+        gid: ${MYGID:-1000}
+    container_name: mailer-php
+    volumes:
+      - .:/var/www/mailer
+      - ./docker/php-fpm/php/php.ini:/usr/local/etc/php/conf.d/php.ini
+    networks:
+      - mailer
+
+  mailernginx:
+    container_name: mailer-nginx
+    build:
+      context: ./
+      dockerfile: ./docker/nginx/Dockerfile
+    volumes:
+      - .:/var/www/mailer
+    ports:
+      - "80:80"
+    networks:
+      - mailer
+
+networks:
+  mailer:
+    driver: bridge

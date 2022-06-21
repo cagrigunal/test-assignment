@@ -29,14 +29,18 @@ services:
       - ./docker/php-fpm/php/php.ini:/usr/local/etc/php/conf.d/php.ini
     networks:
       - mailer
-  frontend:
-    build:
-      context: ./
-      dockerfile: ./docker/node/Dockerfile
-    volumes:
-      - ./frontend/:/app
+
+  my_frontend:
+    container_name: my_frontend
+    image: node:lts
+    working_dir: /var/www/html/app/
+    entrypoint: /bin/bash
     ports:
-      - '8000:8000'
+      - "8000:8000"
+    volumes:
+      - ./frontend/:/var/www/html/app
+    tty: true
+
 
   mailernginx:
     container_name: mailer-nginx

@@ -20,11 +20,11 @@ Backend app api link is http://localhost/api/
 
 ## Current solution 
 
--Frontend
+-Frontend <br />
 First time I'm using vite and I enjoyed it. I've seperated the frontend from the backend because in a big application things get messier. I've put them in the same folder to run the apps at the same time. Its under folder Frontend.
 After creating fields for a subscription, subscriber fills the form with the added fields and the frontend app lists all the subscriptions. 
 
--Backend
+-Backend <br />
 We have Field, Subscriber and FieldValue models with resources and api routes. Field and Subscriber models have their own restful controllers. Just to show enum example, I've created SubscriberState helper and used it in the SubscriberController. 
 I've created a rule to check whether any given email has valid domain and mx records which is called ValidDomain.
 I've created factories and planted them in the database seeder as an example.

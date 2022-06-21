@@ -1,4 +1,4 @@
-start: docker-up install
+start: docker-up install vite
 up: docker-up
 stop: docker-down
 
@@ -15,7 +15,7 @@ vite-build:
     docker exec -u maileruser:mailergroup my_frontend npm run build
 
 vite:
-    docker exec -u maileruser:mailergroup my_frontend npm run dev
+    docker exec -u maileruser:mailergroup my_frontend npm install
 
 
 

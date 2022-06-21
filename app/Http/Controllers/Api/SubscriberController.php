@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\SubscriberState;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSubscriberRequest;
 use App\Http\Requests\SubscriberRequest;
+use App\Http\Resources\SubscriberResource;
+use App\Models\FieldValue;
 use App\Models\Subscriber;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\Types\Resource_;
+use Throwable;
 
 class SubscriberController extends Controller
 {
@@ -17,7 +22,7 @@ class SubscriberController extends Controller
      */
     public function index()
     {
-        $subscribers = Subscriber::all();
+        $subscribers = SubscriberResource::collection(Subscriber::all());
 
         return response()->json([
             'status' => true,
@@ -25,16 +30,7 @@ class SubscriberController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
+  
     /**
      * Store a newly created resource in storage.
      *
@@ -43,8 +39,15 @@ class SubscriberController extends Controller
      */
     public function store(SubscriberRequest $request)
     {
-        $subscriber = Subscriber::create($request->all());
 
+        $subscriber = Subscriber::create(['name' => $request->name, 'email' => $request->email, 'state' => SubscriberState::SUBSCRIBER_STATE["active"]]);
+        if($request->has("fieldValues")){
+            foreach($request->fieldValues as $key => $value){
+                FieldValue::create(['subscriber_id'=> $subscriber->id, 'title'=>$key , 'value'=>$value]);
+            }
+        }
+            
+      
         return response()->json([
             'status' => true,
             'message' => "Subscriber Created successfully!",
@@ -60,19 +63,18 @@ class SubscriberController extends Controller
      */
     public function show(Subscriber $subscriber)
     {
-        //
+    
+        $subscriber = Subscriber::find($subscriber->id);
+       
+        $subscriber = new SubscriberResource($subscriber);
+        return response()->json([
+            'status' => true,
+            'message' => "Subscriber found!",
+            'subscriber' => $subscriber
+        ], 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Subscriber  $subscriber
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Subscriber $subscriber)
-    {
-        //
-    }
+ 
 
     /**
      * Update the specified resource in storage.

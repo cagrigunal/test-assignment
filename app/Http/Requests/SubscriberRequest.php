@@ -14,7 +14,7 @@ class SubscriberRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,7 +26,6 @@ class SubscriberRequest extends FormRequest
     {
         return [
             "name" => "required",
-            "state" => "required",
             "email" => ['required','email', new ValidDomain()]
         ];
     }

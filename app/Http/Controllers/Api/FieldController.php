@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreFieldRequest;
 use App\Http\Requests\FieldPostRequest;
+use App\Http\Requests\FieldRequest;
 use App\Models\Field;
 use Illuminate\Http\Request;
 
@@ -41,7 +42,7 @@ class FieldController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(FieldPostRequest $request)
+    public function store(FieldRequest $request)
     {
         $field = Field::create($request->all());
 
@@ -81,7 +82,7 @@ class FieldController extends Controller
      * @param  \App\Models\Field  $field
      * @return \Illuminate\Http\Response
      */
-    public function update(FieldPostRequest $request, Field $field)
+    public function update(FieldRequest $request, Field $field)
     {
         $field->update($request->all());
 

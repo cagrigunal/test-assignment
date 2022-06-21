@@ -1,12 +1,16 @@
 <script setup>
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
+import Subscribe from './components/Subscribe.vue'
+import Fields from './components/Fields.vue';
+import Subscribers from './components/Subscribers.vue';
+
 </script>
 
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + Vite" />
+  <Fields/>
+  <Subscribe />
+  <Subscribers/>
 </template>
 
 <style>

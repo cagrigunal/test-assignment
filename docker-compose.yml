@@ -36,7 +36,7 @@ services:
     working_dir: /var/www/html/app/
     entrypoint: /bin/bash
     ports:
-      - "8000:8000"
+      - "8080:8080"
     volumes:
       - ./frontend/:/var/www/html/app
     tty: true

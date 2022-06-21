@@ -14,7 +14,7 @@ class FieldRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,7 +26,7 @@ class FieldRequest extends FormRequest
     {
         return [
             "title" => "required",
-            "field" => "required"
+            "type" => "required"
         ];
     }
 }

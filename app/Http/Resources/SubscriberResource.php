@@ -2,9 +2,11 @@
 
 namespace App\Http\Resources;
 
+
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class Subscriber extends ResourceCollection
+class SubscriberResource extends JsonResource
 {
     /**
      * Transform the resource collection into an array.
@@ -19,7 +21,7 @@ class Subscriber extends ResourceCollection
             'name' => $this->name,
             'email' => $this->email,
             'state' =>  $this->state,
-            'ratings' => $this->fields
+            'fieldValues' => FieldValueResource::collection($this->fieldValues) 
         ];
 
     }

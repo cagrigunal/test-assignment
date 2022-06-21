@@ -25,7 +25,9 @@ class ValidDomain implements Rule
      */
     public function passes($attribute, $value)
     {
-        $domain = substr($value, strpos($value, '@'));
+        $domain = substr($value, strpos($value, '@')+1);
+  
+        
         if (checkdnsrr($domain, "MX")) {
             return true;
         } else {

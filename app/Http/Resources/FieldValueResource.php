@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
 
-class Field extends ResourceCollection
+class FieldValueResource extends JsonResource
 {
     /**
      * Transform the resource collection into an array.
@@ -14,6 +14,11 @@ class Field extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'value' => $this->value,
+            'created_at' =>  $this->created_at
+        ];
     }
 }

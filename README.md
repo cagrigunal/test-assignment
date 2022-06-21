@@ -29,20 +29,21 @@ We have Field, Subscriber and FieldValue models with resources and api routes. F
 I've created a rule to check whether any given email has valid domain and mx records which is called ValidDomain.
 I've created factories and planted them in the database seeder as an example.
 I haven't linked models in database level
+I created a basic exception handler.
 I've created several tests but there is room for improvement
 
 Routes
-  GET|HEAD        api/fields ................... fields.index › Api\FieldController@index
-  POST            api/fields ................... fields.store › Api\FieldController@store
-  GET|HEAD        api/fields/{field} ............. fields.show › Api\FieldController@show
-  PUT|PATCH       api/fields/{field} ......... fields.update › Api\FieldController@update
-  DELETE          api/fields/{field} ....... fields.destroy › Api\FieldController@destroy
-  GET|HEAD        api/subscribers .... subscribers.index › Api\SubscriberController@index
-  POST            api/subscribers .... subscribers.store › Api\SubscriberController@store
-  GET|HEAD        api/subscribers/{subscriber} subscribers.show › Api\SubscriberController@show
-  PUT|PATCH       api/subscribers/{subscriber} subscribers.update › Api\SubscriberController@update
-  DELETE          api/subscribers/{subscriber} subscribers.destroy › Api\SubscriberController@destroy
+  GET|HEAD        api/fields ................... fields.index › Api\FieldController@index  <br />
+  POST            api/fields ................... fields.store › Api\FieldController@store  <br />
+  GET|HEAD        api/fields/{field} ............. fields.show › Api\FieldController@show  <br />
+  PUT|PATCH       api/fields/{field} ......... fields.update › Api\FieldController@update  <br />
+  DELETE          api/fields/{field} ....... fields.destroy › Api\FieldController@destroy  <br />
+  GET|HEAD        api/subscribers .... subscribers.index › Api\SubscriberController@index  <br />
+  POST            api/subscribers .... subscribers.store › Api\SubscriberController@store  <br />
+  GET|HEAD        api/subscribers/{subscriber} subscribers.show › Api\SubscriberController@show <br />
+  PUT|PATCH       api/subscribers/{subscriber} subscribers.update › Api\SubscriberController@update <br />
+  DELETE          api/subscribers/{subscriber} subscribers.destroy › Api\SubscriberController@destroy <br />
 
 
-
-
+## Final Notes
+It took longer than I expected because I've just bought a new computer and started installing everything from scratch. Docker took a lot of my time and I also lost time configuring vite with docker. The new computer has a M1 chip which made things harder for me because normally I would use webdevops docker images for laravel but with M1 chip it failed to work. If you have any problems while setting up please contact. I would appreciate any kind of feedback

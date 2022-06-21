@@ -29,6 +29,14 @@ services:
       - ./docker/php-fpm/php/php.ini:/usr/local/etc/php/conf.d/php.ini
     networks:
       - mailer
+  frontend:
+    build:
+      context: ./
+      dockerfile: ./docker/node/Dockerfile
+    volumes:
+      - ./frontend/:/app
+    ports:
+      - '8000:8000'
 
   mailernginx:
     container_name: mailer-nginx
@@ -39,6 +47,7 @@ services:
       - .:/var/www/mailer
     ports:
       - "80:80"
+      - "5173:5173"
     networks:
       - mailer
 

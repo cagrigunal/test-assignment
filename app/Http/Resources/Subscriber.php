@@ -14,6 +14,13 @@ class Subscriber extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'email' => $this->email,
+            'state' =>  $this->state,
+            'ratings' => $this->fields
+        ];
+
     }
 }

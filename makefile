@@ -11,6 +11,14 @@ docker-up:
 install:
 	docker exec -u maileruser:mailergroup mailer-php composer install
 
+vite-build:
+    docker exec -u maileruser:mailergroup my_frontend npm run build
+
+vite:
+    docker exec -u maileruser:mailergroup my_frontend npm run dev
+
+
+
 docker-down:
 	docker-compose down
 
@@ -23,3 +31,5 @@ migrate:
 migrate-fresh:
 	docker exec -u maileruser:mailergroup mailer-php php artisan migrate:fresh
 
+npm-install:
+	docker exec -u maileruser:mailergroup mailer-php npm install

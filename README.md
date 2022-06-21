@@ -8,9 +8,12 @@ In order to build the working environment, docker & docker-compose must be insta
 
 ## Environment installation
 
-Run make start - make migrate in the root folder.
+Run make start - make migrate-fresh in the root folder.
 
-Run docker exec -it my_frontend /bin/bash     to log into frontend console and then run npm run install and npm run dev
+Run docker exec -it my_frontend /bin/bash     to log into frontend console and then run 
+cd test-assignment-frontend
+npm run install
+npm run dev
 
 
 ## How to run it
@@ -23,6 +26,7 @@ Backend app api link is http://localhost/api/
 -Frontend <br />
 First time I'm using vite and I enjoyed it. I've seperated the frontend from the backend because in a big application things get messier. I've put them in the same folder to run the apps at the same time. Its under folder Frontend.
 After creating fields for a subscription, subscriber fills the form with the added fields and the frontend app lists all the subscriptions. 
+In a real world application, I would use a state manager like vuex, router and make the polling better by making different components talk with each other.
 
 -Backend <br />
 We have Field, Subscriber and FieldValue models with resources and api routes. Field and Subscriber models have their own restful controllers. Just to show enum example, I've created SubscriberState helper and used it in the SubscriberController. 

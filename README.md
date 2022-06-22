@@ -15,6 +15,9 @@ cd test-assignment-frontend
 npm run install
 npm run dev
 
+## How to run tests
+make migrate-fresh
+make test
 
 ## How to run it
 
